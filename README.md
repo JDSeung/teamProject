@@ -1,2 +1,1 @@
-https://github.com/JDSeung/teamProject.git
-�׽�Ʈ
+﻿팀프로젝트 테스트 파일
