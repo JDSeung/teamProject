@@ -1,8 +1,8 @@
-package bookshop.bean;
+﻿package bookshop.bean;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
-public class ManagerDataBean {
+public class MngrDataBean {
 	
 	private int book_id; //책의 등록 번호
 	private String book_kind; //책 분류
@@ -16,7 +16,6 @@ public class ManagerDataBean {
 	private String book_content; //책의 내용
 	private byte discount_rate; //책의 할인율
 	private Timestamp reg_date;//책의 등록날자
-	
 	public int getBook_id() {
 		return book_id;
 	}
@@ -89,5 +88,7 @@ public class ManagerDataBean {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+	
+	
 	
 }
