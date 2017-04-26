@@ -1,7 +1,8 @@
-package bookshop.controller;
+﻿package bookshop.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections4.map.HashedMap;
 
 import bookshop.process.CommandAction;
 
@@ -33,7 +33,7 @@ import bookshop.process.CommandAction;
 		)
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Map<String, Object> commandMap = new HashedMap<String, Object>();   
+    private Map<String, Object> commandMap = new HashMap<String, Object>();   
     /**
      * @see HttpServlet#HttpServlet()
      */
