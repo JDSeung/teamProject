@@ -15,7 +15,7 @@ function edit(editBtn){
 	var arr = rStr.split(",");
 	var query = "/shoppingmall/mg/bookUpdateFrom.do?booK_id=?" + arr[0];
 	query += "&book_kind="+arr[1];
-	window.location.href(query);
+	window.location.href = query;
 }
 //삭제버튼 클릭하면 자동실행
 function edit(delBtn){
@@ -23,6 +23,6 @@ function edit(delBtn){
 	var arr = rStr.split(",");
 	var query = "/shoppingmall/mg/bookDeleteFrom.do?booK_id=?" + arr[0];
 	query += "&book_kind="+arr[1];
-	window.location.href(query);
+	window.location.href=query;
 }
 
