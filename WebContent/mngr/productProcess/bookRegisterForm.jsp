@@ -86,7 +86,8 @@
 				<input type="text" id="discount_rate" name="discount_rate" size="5" placeholder="10" maxlength="2"/>
 			</li>
 			<li class="label2">
-				<input type="submit" value="registBook" value="책등록" />
+				<input type="submit" id="registBook" value="책등록" />
+				<input type="button" id="bookMain" value="취소" />
 			</li>
 		</ul>
 	</div>

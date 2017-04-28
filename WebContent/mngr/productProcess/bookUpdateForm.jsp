@@ -98,6 +98,7 @@
 			</li>
 			<li class="label2">
 				<input type="submit" value="updateBook" value="책수정" />
+				<input type="button" id="bookMain" value="취소" />
 			</li>
 		</ul>
 	</div>
