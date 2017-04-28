@@ -1,4 +1,4 @@
-﻿package bookshop.controller;
+package bookshop.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,7 +49,6 @@ public class Controller extends HttpServlet {
     	ServletContext context = config.getServletContext();
     	//realFolder 웹 애플리케이션 시스템상의 절대 경로로 변경
     	String realPath = context.getRealPath(realFolder) + "\\" + props;
-    	
     	//명령어와 처리 클래스의 매핑 정보를 저장할 Properties 객체 생성
     	Properties pr = new Properties();
     	FileInputStream f = null;
@@ -117,7 +116,7 @@ public class Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("cont", view);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}
 

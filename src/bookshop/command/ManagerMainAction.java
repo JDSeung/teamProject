@@ -11,7 +11,7 @@ public class ManagerMainAction implements CommandAction{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		//관리자르 구분할 때 사용
 		request.setAttribute("type", new Integer(0));
-		return "/jsp/managerMain.jsp";//응답페이지
+		return "/mngr/managerMain.jsp";//응답페이지
 	}
 	
 }

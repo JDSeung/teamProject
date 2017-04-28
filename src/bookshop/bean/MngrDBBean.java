@@ -33,13 +33,13 @@ public class MngrDBBean {
 		SHA256 sha = SHA256.getInsatnce();
 		try{
 			conn = DBConnection.getConnection();
-			
 			String orgPass = passwd;
 			String shaPass = sha.getSha256(orgPass.getBytes());
 			sql = new StringBuffer();
 			sql.append("SELECT MANAGERPASSWD FROM MANAGER WHERE MANAGERID = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			if(rs.next()){
 				//해당 아이디가 있으면 수행
 				String dbpasswd = rs.getString("managerPasswd");

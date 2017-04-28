@@ -24,7 +24,7 @@ public class PassCrypt {
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCtx.lookup("jdbc/jsptest");
+		DataSource ds = (DataSource)envCtx.lookup("jdbc/Oracle11g");
 		return ds.getConnection();
 	}
 	

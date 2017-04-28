@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/shoppingmall/css/style.css" />
 <script src="/shoppingmall/js/jquery-3.2.1.min.js"></script>
-<script src="/shoppingmall/js/managermain.js"></script>
+<script src="/shoppingmall/mngr/managerMain.js"></script>
 </head>
 <body>
 	<c:if test="${empty sessionScope.id}">
