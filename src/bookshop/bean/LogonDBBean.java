@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sound.midi.Patch;
-import javax.sql.DataSource;
-
 import com.crypt.BCrypt;
 import com.crypt.SHA256;
 import com.db.DBConnection;
@@ -187,7 +182,6 @@ public class LogonDBBean {
 	}
 	
 	//회원 정보 수정을 처리하는 메소드
-	@SuppressWarnings("resource")
 	public int updateMember(LogonDataBean member){
 		int x = -1;
 		sql = new StringBuffer();
@@ -231,7 +225,6 @@ public class LogonDBBean {
 	}
 	
 	//회원 정보 삭제하는 메소드
-	@SuppressWarnings("resource")
 	public int deleteMember(String id, String passwd){
 		int x =-1;
 		sql = new StringBuffer();

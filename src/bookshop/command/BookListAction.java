@@ -15,6 +15,7 @@ public class BookListAction implements CommandAction{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		List<MngrDataBean> bookList = null;
 		String book_kind = request.getParameter("book_kind");
+		
 		int count = 0;
 		
 		//DB연동 - 전체 상품의 수를 얻어냄

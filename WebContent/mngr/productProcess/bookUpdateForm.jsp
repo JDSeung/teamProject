@@ -11,8 +11,8 @@
 </c:if>
 
 <div id="header">
-	<div id="bookMain">관리자 메인으로</div>
-	<div id="bookList">목록으로</div>
+	<button id="bookMain">관리자 메인으로</button>
+	<button id="bookList">목록으로</button>
 </div>
 <form action="/shoppingmall/mg/bookUpdatePro.do" method="post" enctype="multipart/form-data" id="upForm1">
 	<div id="bookUpdateForm" class="box">
@@ -62,7 +62,7 @@
 				<div id="publishing_date">
 					<jsp:useBean id="nowTime" class="java.util.Date"></jsp:useBean>
 					<fmt:formatDate var="nowTimeStr" pattern="yyyy-MM-dd" value="${nowTime}"/>
-					<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimeStr.toString.substring(0,4)}"/>
+					<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimeStr.toString().substring(0,4)}"/>
 					<select name="publishing_year" >
 						<c:forEach var = "i" begin="2010" end ="${lastYear}">
 							<option value="${i}">${i}</option>
@@ -87,18 +87,16 @@
 			</li>
 			<li>
 				<label for="book_content">내용</label>
-				<textarea id="book_content" name="book_content" cols="50" rows="13">
-					${book.book_content}
-				</textarea>
+				<textarea id="book_content" name="book_content" cols="50" rows="13">${book.book_content}</textarea>
 			</li>
 			<li>
 				<label for="discount_rate">할인율</label>
 				<input type="text" id="discount_rate" name="discount_rate" 
-					   size="5" placeholder="10" maxlength="2" value="${book.book_content}"/>
+					   size="5" placeholder="10" maxlength="2" value="${book.discount_rate}"/>
 			</li>
 			<li class="label2">
-				<input type="submit" value="updateBook" value="책수정" />
-				<input type="button" id="bookMain" value="취소" />
+				<input type="submit" value="책수정" />
+				<button id="bookMain">취소</button>
 			</li>
 		</ul>
 	</div>

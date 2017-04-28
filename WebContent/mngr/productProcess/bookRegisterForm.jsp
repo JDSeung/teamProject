@@ -13,13 +13,13 @@
 	<button id="bookMain">관리자 메인으로</button>
 	<button id="bookList">목록으로</button>
 </div>
-<form action="upForm1" action="/shoppingmall/mg/bookRegisterPro.do"
+<form id="upForm1" action="/shoppingmall/mg/bookRegisterPro.do"
 		method="post" enctype="multipart/form-data">
 	<div id="bookRegistForm" class="box">
 		<ul>
 			<li>
 				<label for="book_kind">분류선택</label>
-				<select name="bok_kind" id="book_kind">
+				<select name="book_kind" id="book_kind">
 					<option value="100">문학</option>
 					<option value="200">외국어</option>
 					<option value="300">컴퓨터</option>
@@ -87,7 +87,6 @@
 			</li>
 			<li class="label2">
 				<input type="submit" id="registBook" value="책등록" />
-				<input type="button" id="bookMain" value="취소" />
 			</li>
 		</ul>
 	</div>

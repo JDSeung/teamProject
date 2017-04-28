@@ -24,17 +24,16 @@
 				</li>
 			</ul>
 		</div>
-		<c:if test="${!empty sessionScope.id}">
-			<div id="status">
-				<ul>
-					<li>
-						관리자 로그인 성공!!.. 작업중...
-						<button id="logout">로그아웃</button>
-					</li>
-				</ul>
-			</div>
-		</c:if>
 	</c:if>
-
+	<c:if test="${!empty sessionScope.id}">
+		<div id="status">
+			<ul>
+				<li>
+					관리자 로그인 성공!!.. 작업중...
+					<button id="logout">로그아웃</button>
+				</li>
+			</ul>
+		</div>
+	</c:if>
 </body>
 </html>

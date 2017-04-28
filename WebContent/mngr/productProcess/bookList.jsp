@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="/shoppingmall/css/style.css"/>
-<script src="/shoppingmall/js/jquery-1.11.0.min.js"></script>
+<script src="/shoppingmall/js/jquery-3.2.1.min.js"></script>
 <script src="/shoppingmall/mngr/productProcess/booklist.js"></script>
-	<c:if test="${empty sessionScope.id}">
+<c:if test="${empty sessionScope.id}">
 	<meta http-equiv="Refresh" content="0; url=/shoppingmall/mg/managerMain.do">
 </c:if>
 <div id="listHeader">
@@ -79,11 +79,11 @@
 					<fmt:formatDate value="${book.getReg_date()}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td width="50">
-					<button id="edit" name="${book.getBook_id()}, ${book.getBokk_kind()}"
+					<button id="edit" name="${book.getBook_id()},${book.getBook_kind()}"
 							onclick="edit(this)">수정</button>
 				</td>
 				<td width="50">
-					<button id="edit" name="${book.getBook_id()}, ${book.getBokk_kind()}"
+					<button id="delete" name="${book.getBook_id()},${book.getBook_kind()}"
 							onclick="del(this)">삭제</button>
 				</td>
 			</tr>

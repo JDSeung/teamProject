@@ -24,6 +24,12 @@
 			</ul>
 			<ul>
 				<li>구매된 상품관련 작업</li>
+				<li>
+					<button id="orderedProduct">전체구매목록 확인</button>
+				</li>
+			</ul>
+			<ul>
+				<li>상품 QnA 작업</li>
 				<li><button id="qna">상품 QnA답변</button></li>
 			</ul>
 		</div>

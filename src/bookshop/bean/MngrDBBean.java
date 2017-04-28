@@ -57,6 +57,7 @@ public class MngrDBBean {
 		}finally {
 			DBConnection.disConnect(rs, pstmt, conn);
 		}
+		System.out.println(result);
 		return result;
 	}
 	//책 등록 메소드
@@ -190,11 +191,14 @@ public class MngrDBBean {
 			conn = DBConnection.getConnection();
 			sql = new StringBuffer();
 			sql.append("SELECT * FROM BOOK ");
-			if(!(book_kind.equals("all") || book_kind.equals(""))){
-				sql.append("WHERE BOOK_KIND = ? ORDER BY REG_DATE DESC ");
-				pstmt.setString(1, book_kind);
+			if(book_kind != null){
+				if(!(book_kind.equals("all") || book_kind.equals(""))){
+					sql.append("WHERE BOOK_KIND = ? ORDER BY REG_DATE DESC ");
+					pstmt.setString(1, book_kind);
+				}
 			}
 			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
 			if(rs.next()){
 				bookList = new ArrayList<MngrDataBean>();
 				do{
@@ -288,6 +292,7 @@ public class MngrDBBean {
 				book.setBook_kind(rs.getString("book_kind"));
 				book.setBook_title(rs.getString("book_title"));
 				book.setBook_price(rs.getInt("book_price"));
+				book.setBook_content(rs.getString("book_content"));
 				book.setBook_count(rs.getShort("book_count"));
 				book.setAuthor(rs.getString("author"));
 				book.setPublishing_com(rs.getString("publishing_com"));
