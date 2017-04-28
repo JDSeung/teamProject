@@ -20,6 +20,9 @@
 			<ul>
 				<li><label for="cid">아이디</label> <input type="email" name="cid"
 					size="20" maxlength="50" placeholder="example@kings.com" id="cid" />
+					<label for="cpasswd">비밀번호</label> <input type="password"
+					name="cpasswd" size="20" placeholder="6~16자 숫자/문자" maxlength="16"
+					id="cpasswd" />
 					<button id="uLogin">로그인</button>
 					<button id="uRes">회원가입</button></li>
 			</ul>
@@ -29,7 +32,7 @@
 	<c:if test="${!empty sessionScope.id }">
 		<div id="lStatus">
 			<ul>
-				<li>${sessionScope.id }님이로그인 하셨습니다.
+				<li>${sessionScope.id }님이로그인하셨습니다.
 					<div id="info">
 						<table>
 							<tr height="10">
