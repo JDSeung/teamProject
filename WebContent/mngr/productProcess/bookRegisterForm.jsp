@@ -55,7 +55,7 @@
 				<div id="publishing_date">
 					<jsp:useBean id="nowTime" class="java.util.Date"></jsp:useBean>
 					<fmt:formatDate var="nowTimeStr" pattern="yyyy-MM-dd" value="${nowTime}"/>
-					<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimStr.toString().substring(0,4)}"/>
+					<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimeStr.toString().substring(0,4)}"/>
 					<select name="publishing_year" >
 						<c:forEach var = "i" begin="2010" end ="${lastYear}">
 							<option value="${i}">${i}</option>
