@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="/shoppingmall/css/style.css"/>
-<script src="/shoppingmall/js/jquery-1.11.0.min.js"></script>
+<script src="/shoppingmall/js/jquery-3.2.1.min.js"></script>
 <script src="/shoppingmall/js/jquery.form.min.js"></script>
 <script src="/shoppingmall/mngr/productProcess/bookregist.js"></script>
 <c:if test ="${empty sessionScope.id}">
