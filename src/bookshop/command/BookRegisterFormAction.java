@@ -12,5 +12,4 @@ public class BookRegisterFormAction implements CommandAction{
 		request.setAttribute("type", new Integer(0));
 		return "/mngr/productProcess/bookRegisterForm.jsp";
 	}
-
 }
