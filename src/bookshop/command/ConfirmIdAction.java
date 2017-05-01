@@ -9,8 +9,8 @@ import bookshop.process.CommandAction;
 public class ConfirmIdAction implements CommandAction {
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response)  {
-		try{
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		
@@ -19,10 +19,6 @@ public class ConfirmIdAction implements CommandAction {
 		int check = manager.confirmId(id);
 		
 		request.setAttribute("check", new Integer(check));
-		}catch (Exception e) {
-			System.out.println("ConfirmIdAction requestPro 에러 : ");
-			e.printStackTrace();
-		}
 		return "/member/confirmId.jsp";
 	}
 

@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$("#checkId").click(function() {
 		// [ID중복확인]버튼 클릭
 
-		if ($("#id").val()) {
+		if ($("id").val()) {
 			var query = {
 				id : $("#id").val()
 			};

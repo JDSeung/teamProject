@@ -13,7 +13,7 @@ import bookshop.process.CommandAction;
 public class ShopMainAction implements CommandAction {
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response){
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
 		MngrDataBean bookList[] =null;
 		List<MngrDataBean[]> bookLists = new ArrayList<MngrDataBean[]>();

@@ -22,13 +22,13 @@ public class CartDBBean {
 		
 	}
 	// [장바구니에 담기]를 클릭하면 수행되는 것으로 cart 테이블에 새로운 레코드를 추가
-	public void insertCart(CartDataBean cart){
+	public void insertCart(CartDataBean cart) throws Exception{
 		sql = new StringBuffer();
 		
 		try{
 			conn = DBConnection.getConnection();
-			sql.append("insert into cart(cart_id, book_id, buyer, book_title, buy_price, buy_count, book_image) ");
-			sql.append("values(cart_seq.nextval,?, ?, ?, ?, ?, ?)");
+			sql.append("insert into cart(book_id, buyer, book_title, buy_price, buy_count, book_image "+
+			"values(?, ?, ?, ?, ?, ?)");
 			
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, cart.getBook_id());
@@ -48,7 +48,7 @@ public class CartDBBean {
 	}
 	
 	// id에 해당하는 레코드의 수를 얻어내는 메소드
-	public int getListCount(String id){
+	public int getListCount(String id) throws Exception{
 		int x = 0;
 		
 		try{
@@ -72,13 +72,13 @@ public class CartDBBean {
 	}
 	
 	// id에 해당하는 레코드의 목록을 얻어내는 메소드
-	public List<CartDataBean> getCart(String id, int count){
+	public List<CartDataBean> getCart(String id, int count) throws Exception{
 		CartDataBean cart = null;
 		List<CartDataBean> lists = null;
 		
 		try{
 			conn = DBConnection.getConnection();
-			sql = new StringBuffer();
+			
 			sql.append("select * from cart where buyer=? ");
 			pstmt = conn.prepareStatement(sql.toString());
 			
@@ -109,7 +109,7 @@ public class CartDBBean {
 	}
 	
 	// 장바구니에서 수량 수정 시 실행되는 메소드
-	public void updateCount(int cart_id, byte count){
+	public void updateCount(int cart_id, byte count) throws Exception{
 		try{
 			conn = DBConnection.getConnection();
 			
@@ -127,7 +127,7 @@ public class CartDBBean {
 	}
 	
 	// 장바구니에서 cart_id에 대한 레코드를 삭제하는 메소드
-	public void deleteList(int cart_id){
+	public void deleteList(int cart_id) throws Exception{
 		try{
 			conn = DBConnection.getConnection();
 			
@@ -144,7 +144,7 @@ public class CartDBBean {
 	}
 	
 	// id에 해당하는 모든 레코드를 삭제하는 메소드로 [장바구니 비우기] 버튼을 클릭 시 실행된다.
-	public void deleteAll(String id){
+	public void deleteAll(String id) throws Exception{
 		try{
 			conn = DBConnection.getConnection();
 			

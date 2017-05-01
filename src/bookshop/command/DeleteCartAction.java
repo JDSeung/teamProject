@@ -9,8 +9,7 @@ import bookshop.process.CommandAction;
 public class DeleteCartAction implements CommandAction{
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response){
-		try{
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("UTF-8");
 		String list = request.getParameter("list");
 		String msg = "";
@@ -29,10 +28,6 @@ public class DeleteCartAction implements CommandAction{
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("type", new Integer(1));
-		}catch (Exception e) {
-			System.out.println("DeleteCartAction requestPro 에러 : ");
-			e.printStackTrace();
-		}
 		return "/cart/deleteCart.jsp";
 	}
 	

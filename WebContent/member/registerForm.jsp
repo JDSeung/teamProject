@@ -16,12 +16,10 @@
 	%>
 	<div id="regForm" class="box">
 		<ul>
-			<li>
-				<label for="id">아이디</label>
-				<input type="email" name="id" size="20" maxlength="50" 
-					   placeholder="example@kings.com" autofocus id="id" />
-				<button id="checkId">ID중복확인</button>
-			</li>
+			<li><label for="id">아이디</label> <input type="email" name="id"
+				size="20" maxlength="50" placeholder="example@kings.com" autofocus
+				id="id" />
+				<button id="checkId">ID중복확인</button></li>
 			<li><label for="passwd">비밀번호</label> <input type="password"
 				id="passwd" name="passwd" size="20" placeholder="6~16자 숫자/문자"
 				maxlength="16" /></li>

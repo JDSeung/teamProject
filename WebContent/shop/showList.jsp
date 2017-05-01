@@ -40,38 +40,39 @@
 			<c:set var="display" value="전체 목록" />
 		</c:if>
 		<c:if test="${book_kind !='all' }">
-			<c:set var="display" value="[${book_kindName}] 분류의 목록" />
+			<c:set var="distplay" value="[${book_kindName }] 분류의 목록" />
 		</c:if>
-		<p class="b">${display}:(${count}개)</p>
-		<c:forEach var="book" items="${bookList}">
+		<p class="b">${display }:(${count }개)</p>
+		<c:forEach var="book" items="${bookList }">
 			<table class="vhcenter">
 				<tr height="30">
 					<td rowspan="4" width="100"><a
 						href="/shoppingmall/bookContent.do?book_id=${book.getBook_id() }&book_kind=${book.getBook_kind()}">
-							<img src="/shoppingmall/bookImage/${book.getBook_image()}"
+							<img src="/shoppingmall/bookImage/${book.getBook_image() }"
 							class="listimage" alt="" />
 					</a></td>
 					<td class="vhcenter" width="350"><a
-						href="/shoppingmall/bookContent.do?book_id=${book.getBook_id()}&book_kind${book.getBook_kind()}"
+						href="/shoppingmall/bookContent.do?book_id=${book.getBook_id() }&book_kind${book.getBook_kind()}"
 						class="b"> ${book.getBook_title()}</a></td>
 					<td rowspan="4" width="100"><c:if
-							test="${book.getBook_count()==0}">
-						일시품절</c:if> <c:if test="${book.getBook_count()!=0}">
+							test="${book.getBook_count()==0 }">
+						일시품절</c:if> <c:if test="${book.getBook_count()!=0 }">
 						구매 가능</c:if></td>
 				</tr>
 				<tr height="30">
-					<td width="350">출판사 : ${book.getPublishing_com()}</td>
+					<td width="350">출판사 : ${book.getPublishing_com() }</td>
 				</tr>
 				<tr height="30">
-					<td width="350">저자 : ${book.getAuthor()}</td>
+					<td width="350">저자 : ${book.getAuthor() }</td>
 				</tr>
 				<tr height="30">
-					<td width="350">
-						<c:set var="price" value="${book.getBook_price()}" />
-						<c:set var="rate" value="${book.getDiscount_rate()}" />
-						정가 : <fmt:formatNumber value="${price }" type="number" pattern="#,##0" />원<br />
-						<strong class="bred">
-							판매가 : <fmt:formatNumber value="${price*((100.0-rate)/100)}" type="number" pattern="#,##0" />원
+					<td width="350"><c:set var="price"
+							value="${book.getBook_price() }" /> <c:set var="rate"
+							value="${book.getDiscount_rate() }" /> 정가 : <fmt:formatNumber
+							value="${price }" type="number" pattern="#,##0" />원<br /> <strong
+						class="bred">판매가 : <fmt:formatNumber
+								value="${price*((100.0-rate)/100) }" type="number"
+								pattern="#,##0" />원
 					</strong></td>
 				</tr>
 			</table>

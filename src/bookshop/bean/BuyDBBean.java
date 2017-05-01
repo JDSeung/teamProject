@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.db.DBConnection;
+import com.oracle.webservices.internal.api.databinding.Databinding.Builder;
+
+import javafx.scene.control.ButtonBar.ButtonData;
 
 public class BuyDBBean {
 	private static BuyDBBean instance = new BuyDBBean();
@@ -29,7 +32,7 @@ public class BuyDBBean {
 
 		try {
 			conn = DBConnection.getConnection();
-			sql = new StringBuffer();
+
 			sql.append("select * from bank");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -51,6 +54,7 @@ public class BuyDBBean {
 	}
 
 	// 구매 테이블인 buy에 구매 목록 등록
+	@SuppressWarnings("resource")
 	public void insertBuy(List<CartDataBean> lists, String id, String account, String deliveryName, String deliveryTel,
 			String deliveryAddress) throws Exception {
 		Timestamp reg_date = null;
@@ -65,7 +69,7 @@ public class BuyDBBean {
 			reg_date = new Timestamp(System.currentTimeMillis());
 			todayDate = reg_date.toString();
 			compareDate = todayDate.substring(0, 4) + todayDate.substring(5, 7) + todayDate.substring(8, 10);
-			sql = new StringBuffer();
+
 			sql.append("select max(buy_id) from buy");
 
 			pstmt = conn.prepareStatement(sql.toString());
@@ -96,9 +100,9 @@ public class BuyDBBean {
 			for (int i = 0; i < lists.size(); i++) {
 				// 해당 아이디에 대한 cart 테이블의 레코드를 가저온후 buy 테이블에 추가
 				CartDataBean cart = lists.get(i);
-				sql = new StringBuffer();
-				sql.append("insert into buy(buy_id,buyer,book_id,book_title,buy_price,buy_count, ");
-				sql.append("book_image,buy_date,account, deliveryName, deliveryTel, deliveryAddress) ");
+
+				sql.append("insert into buy(buy_id,buyer,book_id,book_title,buy_price,buy_count,");
+				sql.append("book_image,buy_date,account, deliveryName, deliveryTel, deliveryAddress)");
 				sql.append("values(?,?,?,?,?,?,?,?,?,?,?,?)");
 
 				pstmt = conn.prepareStatement(sql.toString());
@@ -111,14 +115,13 @@ public class BuyDBBean {
 				pstmt.setInt(6, cart.getBuy_count());
 				pstmt.setString(7, cart.getBook_image());
 				pstmt.setTimestamp(8, reg_date);
-				pstmt.setString(9, account);
+				pstmt.setString(8, account);
 				pstmt.setString(10, deliveryName);
 				pstmt.setString(11, deliveryTel);
 				pstmt.setString(12, deliveryAddress);
 				pstmt.executeUpdate();
-				
+
 				// 상품이 구매되었으므로 book 테이블의 상품 수량을 재조정함
-				sql = new StringBuffer();
 				sql.append("select book_count from book where book_id=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, cart.getBook_id());
@@ -126,8 +129,7 @@ public class BuyDBBean {
 				rs.next();
 
 				nowCount = (short) (rs.getShort(1) - 1);// 실무에서는 구매 수량을 뺄 것
-				
-				sql = new StringBuffer();
+
 				sql.append("update book set book_count=? where book_id=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setShort(1, nowCount);
@@ -135,8 +137,6 @@ public class BuyDBBean {
 
 				pstmt.executeUpdate();
 			}
-			
-			sql = new StringBuffer();
 
 			sql.append("delete from cart where buyer=?");
 			pstmt = conn.prepareStatement(sql.toString());
@@ -161,7 +161,7 @@ public class BuyDBBean {
 
 		try {
 			conn = DBConnection.getConnection();
-			sql = new StringBuffer();
+
 			sql.append("select count(*) from buy where buyer=?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
@@ -185,7 +185,7 @@ public class BuyDBBean {
 
 		try {
 			conn = DBConnection.getConnection();
-			sql=new StringBuffer();
+
 			sql.append("select count(*) from buy");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -210,7 +210,7 @@ public class BuyDBBean {
 
 		try {
 			conn = DBConnection.getConnection();
-			sql = new StringBuffer();
+
 			sql.append("select * from buy where buyer = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 
@@ -248,8 +248,8 @@ public class BuyDBBean {
 
 		try {
 			conn = DBConnection.getConnection();
-			sql = new StringBuffer();
-			sql.append("select * from buy");
+
+			sql.append("select *from buy");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 
@@ -265,7 +265,6 @@ public class BuyDBBean {
 				buy.setBuy_price(rs.getInt("buy_price"));
 				buy.setBuy_count(rs.getByte("buy_count"));
 				buy.setBook_image(rs.getString("book_image"));
-				buy.setBuy_date(rs.getTimestamp("buy_date"));
 				buy.setAccount(rs.getString("account"));
 				buy.setDeliveryName(rs.getString("deliveryName"));
 				buy.setDeliveryTel(rs.getString("deliveryTel"));

@@ -14,7 +14,7 @@ import bookshop.process.CommandAction;
 public class BookContentAction implements CommandAction {
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		List<QnaDataBean> qnaLists;
 		String book_kind = request.getParameter("book_kind");
 		int book_id = Integer.parseInt(request.getParameter("book_id"));
@@ -31,7 +31,7 @@ public class BookContentAction implements CommandAction {
 			//QnA가 있으면 수행
 			//book_id에 해당하는 상품의 QnA를 얻어냄
 			qnaLists=qnaProcess.getArticles(count, book_id);
-			request.setAttribute("qnaLists", qnaLists);
+			request.setAttribute("qnsLists", qnaLists);
 		}
 		
 		request.setAttribute("book",book);
