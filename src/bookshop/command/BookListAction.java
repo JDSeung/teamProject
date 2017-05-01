@@ -12,7 +12,7 @@ import bookshop.process.CommandAction;
 public class BookListAction implements CommandAction{
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String requestPro(HttpServletRequest request, HttpServletResponse response){
 		List<MngrDataBean> bookList = null;
 		String book_kind = request.getParameter("book_kind");
 		

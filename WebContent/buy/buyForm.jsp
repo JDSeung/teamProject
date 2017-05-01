@@ -32,7 +32,7 @@
 						<td width="300">
 							<img src="/shoppingmall/bookImage/${cart.getBook_image()}" class="cartimage">${cart.getBook_title()}
 						</td>
-						<td width="50" class="cen">${cart.getBuy_count}</td>
+						<td width="50" class="cen">${cart.getBuy_count()}</td>
 						<td width="100" class="cen">
 							<c:set var="amount" value="${cart.getBuy_count()*cart.getBuy_price()}"/>
 							<c:set var="total" value="${total+amount}"/>

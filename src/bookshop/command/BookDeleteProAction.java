@@ -9,7 +9,7 @@ import bookshop.process.CommandAction;
 public class BookDeleteProAction implements CommandAction {
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		int book_id = Integer.parseInt(request.getParameter("book_id"));
 		String book_kind = request.getParameter("book_kind");
 		

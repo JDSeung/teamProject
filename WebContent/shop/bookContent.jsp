@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script src="/shoppingmall/js/jquery-3.2.1.min.js"></script>
-<script src="/shoppingmall/shop/bookcontent.js"></script>
+<script src="/shoppingmall/shop/bookContent.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,9 +28,9 @@
 	<div id="showBook">
 		<table class="vhcenter">
 			<tr height="30">
-				<td rowspan="6" width="150"><img
-					src="/shoppingmall/bookImage/${book.getBook_image() }"
-					class="contentimage" alt="" /></td>
+				<td rowspan="6" width="150">
+					<img src="/shoppingmall/bookImage/${book.getBook_image()}" class="contentimage" alt="" />
+				</td>
 				<td width="500"><b>${book.getBook_title() }</b></td>
 			</tr>
 			<tr>
@@ -43,33 +43,33 @@
 				<td width="500">출판일 : ${book.getPublishing_date() }</td>
 			</tr>
 			<tr>
-				<td width="500"><c:set var="price"
-						value="${book.getBook_price() }" /> <c:set var="rate"
-						value="${book.getDiscount_rate() }" /> 정가 : <fmt:formatNumber
-						value="${price }" type="number" pattern="#,##0" />원 <br /> <strong
-					class="bred">판매가 : <c:set var="${rPrice }"
-							value="${price*((100.0-rate)/100) }" /> <fmt:formatNumber
-							var="${rPrice }" type="number" pattern="#,##0" />원
-				</strong></td>
+				<td width="500">
+					<c:set var="price" value="${book.getBook_price()}" />
+					<c:set var="rate" value="${book.getDiscount_rate()}" /> 정가 : 
+					<fmt:formatNumber value="${price}" type="number" pattern="#,##0" />원 <br />
+					<strong class="bred">판매가 : 
+					<c:set var="rPrice" value="${price*((100.0-rate)/100)}" />
+					<fmt:formatNumber value="${rPrice}" type="number" pattern="#,##0" />원</strong>
+				</td>
 			</tr>
 			<tr>
-				<td width="500"><c:if test="${!empty sessionScope.id }">
+				<td width="500">
+					<c:if test="${!empty sessionScope.id }">
 						<c:if test="${book.getBook_count()==0 }">
 							<p>일시 품절</p>
 						</c:if>
-						<c:if test="${book.getBook_count()==1 }">
-						수량 : <input type="text" size="5" value="1" id="buy_count" />개
+						<c:if test="${book.getBook_count()>=1 }">
+							수량 : <input type="text" size="5" value="1" id="buy_count" />개
 						</c:if>
 						<input type="hidden" id="book_id" value="${book_id }" />
-						<input type="hidden" id="book_image"
-							value="${book.getBook_image() }" />
-						<input type="hidden" id="book_title"
-							value="${book.getBook_title() }" />
+						<input type="hidden" id="book_image" value="${book.getBook_image() }" />
+						<input type="hidden" id="book_title" value="${book.getBook_title() }" />
 						<input type="hidden" id="buy_price" value="${rPrice }" />
 						<input type="hidden" id="book_kind" value="${book_kind }" />
 						<input type="hidden" id="buyer" value="${sessionScope.id }" />
 						<button id="insertCart">장바구니에 담기</button>
-					</c:if> <c:if test="${empty sessionScope.id }">
+					</c:if>
+					<c:if test="${empty sessionScope.id }">
 						<c:if test="${book.getBook_count()==0 }">
 							<p>일시 품절</p>
 						</c:if>
@@ -100,17 +100,20 @@
 			</ul>
 		</c:if>
 		<c:if test="${count > 0 }">
-			<c:forEach var="qna" items="${qnaLists }">
+			<c:forEach var="qna" items="${qnaLists}">
 				<ul>
-					<li><c:set var="writer" value="${qna.getQna_writer() }" />
-						${fn:substring(writer,0,4) }**** <small class="date">(${qna.getReg_date() })</small>
+					<li><c:set var="writer" value="${qna.getQna_writer()}" />
+						${fn:substring(writer,0,4)}**** <small class="date">(${qna.getReg_date() })</small>
 					</li>
-					<li>${qna.getQna_content() }</li>
-					<li><c:if test="${sessionScope.id==writer }">
-							<button id="edit" name="${qna.getQna_id() },${book_kind}"
-								onclick="edit(this)">수정</button>
-							<button id="delete" name="${qna.getQna_id }" onclick="del(this)">삭제</button>
-						</c:if></li>
+					<li>
+						${qna.getQna_content()}
+					</li>
+					<li>
+						<c:if test="${sessionScope.id==writer }">
+							<button id="edit" name="${qna.getQna_id()},${book_kind}" onclick="edit(this)">수정</button>
+							<button id="delete" name="${qna.getQna_id()}" onclick="del(this)">삭제</button>
+						</c:if>
+					</li>
 				</ul>
 			</c:forEach>
 		</c:if>
