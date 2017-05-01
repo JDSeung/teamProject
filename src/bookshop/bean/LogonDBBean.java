@@ -27,11 +27,11 @@ public class LogonDBBean {
 
 	// 회원 가입 처리에서 사용하는 메소드
 	public void insertMember(LogonDataBean member) {
-		sql = new StringBuffer();
+		
 		SHA256 sha = SHA256.getInsatnce();
 		try {
 			conn = DBConnection.getConnection();
-
+			sql = new StringBuffer();
 			String orgPass = member.getPasswd();
 			String shaPass = sha.getSha256(orgPass.getBytes());
 			String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt());
@@ -44,7 +44,8 @@ public class LogonDBBean {
 			pstmt.setTimestamp(4, member.getReg_date());
 			pstmt.setString(5, member.getAddress());
 			pstmt.setString(6, member.getTel());
-
+			
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.print("LogonDBBean insertMember 에러 : ");
 			e.printStackTrace();
@@ -61,7 +62,7 @@ public class LogonDBBean {
 		try {
 
 			conn = DBConnection.getConnection();
-
+			sql = new StringBuffer();
 			String orgPass = passwd;
 			String shaPass = sha.getSha256(orgPass.getBytes());
 
@@ -92,10 +93,9 @@ public class LogonDBBean {
 	// 아이디 중복 확인에서 아이디 중복 여부를 확인하는 메소드
 	public int confirmId(String id) {
 		int x = -1;
-		sql = new StringBuffer();
 		try {
 			conn = DBConnection.getConnection();
-
+			sql = new StringBuffer();
 			sql.append("select id from member where id=?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
@@ -117,10 +117,9 @@ public class LogonDBBean {
 	// 주어진 id에 해당하는 회원 정보를 얻어내는 메소드
 	public LogonDataBean getMember(String id) {
 		LogonDataBean member = null;
-		sql = new StringBuffer();
 		try {
 			conn = DBConnection.getConnection();
-
+			sql = new StringBuffer();
 			sql.append("select * from member where id=?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
@@ -146,12 +145,11 @@ public class LogonDBBean {
 	// 주어진 ip, passwd에 해당하는 회원 정보를 얻어내는 메소드
 	public LogonDataBean getMember(String id, String passwd) {
 		LogonDataBean member = null;
-		sql = new StringBuffer();
 
 		SHA256 sha = SHA256.getInsatnce();
 		try {
 			conn = DBConnection.getConnection();
-
+			sql = new StringBuffer();
 			String orgPass = passwd;
 			String shaPass = sha.getSha256(orgPass.getBytes());
 
@@ -184,11 +182,10 @@ public class LogonDBBean {
 	//회원 정보 수정을 처리하는 메소드
 	public int updateMember(LogonDataBean member){
 		int x = -1;
-		sql = new StringBuffer();
-		
 		SHA256 sha = SHA256.getInsatnce();
 		try{
 			conn = DBConnection.getConnection();
+			sql = new StringBuffer();
 			
 			String orgPass = member.getPasswd();
 			String shaPass = sha.getSha256(orgPass.getBytes());
@@ -202,6 +199,7 @@ public class LogonDBBean {
 			if(rs.next()){//해당 아이디가 있으면 수행
 				String dbpasswd = rs.getString("passwd");
 				if(BCrypt.checkpw(shaPass, dbpasswd)){
+					sql = new StringBuffer();
 					sql.append("update member set name=?,address=?,tel=? "+"where id=?");
 					pstmt=conn.prepareStatement(sql.toString());
 					pstmt.setString(1, member.getName());
@@ -227,12 +225,11 @@ public class LogonDBBean {
 	//회원 정보 삭제하는 메소드
 	public int deleteMember(String id, String passwd){
 		int x =-1;
-		sql = new StringBuffer();
 		SHA256 sha = SHA256.getInsatnce();
 		
 		try{
 			conn = DBConnection.getConnection();
-			
+			sql = new StringBuffer();
 			String orgPass = passwd;
 			String shaPass = sha.getSha256(orgPass.getBytes());
 			
@@ -245,6 +242,7 @@ public class LogonDBBean {
 			if(rs.next()){
 				String dbpasswd = rs.getString("passwd");
 				if(BCrypt.checkpw(shaPass, dbpasswd)){
+					sql = new StringBuffer();
 					sql.append("delete from member where id=?");
 					pstmt = conn.prepareStatement(sql.toString());
 					pstmt.setString(1, id);

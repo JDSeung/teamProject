@@ -11,7 +11,8 @@ import bookshop.process.CommandAction;
 public class InsertCartAction implements CommandAction{
 
 	@Override
-	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String requestPro(HttpServletRequest request, HttpServletResponse response){
+		try{
 		request.setCharacterEncoding("UTF-8");
 		
 		// 장바구니에 추가할 정보를 파라미터에서 받아냄
@@ -34,7 +35,10 @@ public class InsertCartAction implements CommandAction{
 		// 장바구니에 추가
 		CartDBBean bookProcess = CartDBBean.getInstance();
 		bookProcess.insertCart(cart);
-		
+		}catch (Exception e) {
+			System.out.println("InsertCartAction requestPro 에러 : ");
+			e.printStackTrace();
+		}
 		return "/cart/insertCart.jsp";
 	}
 	

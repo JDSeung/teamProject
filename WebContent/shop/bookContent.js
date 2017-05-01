@@ -2,7 +2,8 @@ $(document).ready(function(){
 	$("#insertCart").click(function(){//[장바구니에 담기] 버튼클릭
 		var buyer =$("#buyer").val();
 		var book_kind =$("#book_kind").val();
-		var query ={book_id:$("#book_id").val(),
+		var query ={
+				book_id:$("#book_id").val(),
 				buy_count:$("#buy_count").val(),
 				book_image:$("#book_image").val(),
 				book_title:$("#book_title").val(),
@@ -10,7 +11,7 @@ $(document).ready(function(){
 				buyer:buyer};
 		$.ajax({
 			type:"post",
-			url:"/shoppingmall/isertCart.do",
+			url:"/shoppingmall/insertCart.do",
 			data:query,
 			success: function(data){
 				alert("장바구니에 담겼습니다.");
@@ -20,16 +21,22 @@ $(document).ready(function(){
 	
 	$("#list").click(function(){//[목록으로]버튼 클릭
 		window.location.href="/shoppingmall/list.do?book_kind=all";
-		//window.location.href("/shoppingmall/list.do?book_kind=all");
 	});
-	$("#shopMain").click(function(){//[상품QnA쓰기] 버튼 클릭
+	$("#shopMain").click(function(){//[메인으로] 버튼 클릭
 		var book_id =$("#book_id").val();
-		var book_kind = $("book_kind").val();
+		var book_kind = $("#book_kind").val();
 		
 		var query="/shoppingmall/qnaForm.do?book_id="+book_id;
 		query += "&book_kind="+book_kind;
 		window.location.href=query;
-		//window.location.href(query);
+	});
+	$("#writeQna").click(function(){//[상품QnA쓰기] 버튼 클릭
+		var book_id =$("#book_id").val();
+		var book_kind = $("#book_kind").val();
+		alert(book_kind);
+		var query="/shoppingmall/qnaForm.do?book_id="+book_id;
+		query += "&book_kind="+book_kind;
+		window.location.href=query;
 	});
 });
 
