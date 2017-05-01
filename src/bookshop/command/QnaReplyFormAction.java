@@ -1,0 +1,42 @@
+package bookshop.command;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bookshop.bean.QnaDBBean;
+import bookshop.bean.QnaDataBean;
+import bookshop.process.CommandAction;
+
+public class QnaReplyFormAction implements CommandAction {
+
+	@Override
+	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		try{	
+			request.setCharacterEncoding("UTF-8");
+			
+			int qna_id = Integer.parseInt(request.getParameter("qna_id"));
+			
+			//qna_id에 해당하는 QnA를 가져옴
+			QnaDBBean qnaProcess = QnaDBBean.getInstance();
+			QnaDataBean qna = qnaProcess.updateGetArticle(qna_id);
+
+			//QnA답변에 필요한 정보를 얻어냄
+			int book_id = qna.getBook_id();
+			String book_title = qna.getBook_title();
+			String qna_content = qna.getQna_content();
+			byte qora = 2; //답변글
+			
+			request.setAttribute("qna_id", new Integer(qna_id));
+			request.setAttribute("book_id", new Integer(book_id));
+			request.setAttribute("book_title", book_title);
+			request.setAttribute("qna_content", qna_content);
+			request.setAttribute("qora", new Integer(qora));
+			request.setAttribute("type", new Integer(0));
+		}catch (Exception e) {
+			System.out.println("RegisterProAction requestPro 에러 : ");
+			e.printStackTrace();
+		}
+		return "/mngr/qnaProcess/qnaReplyForm.jsp";
+	}
+
+}
